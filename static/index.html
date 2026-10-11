@@ -84,16 +84,108 @@ section.always{display:block}.aws{display:grid;grid-template-columns:1fr 36px 1.
     <p class="note">Spending is front-loaded: planting, saplings and guards come first, then maintenance falls to a low yearly amount while captured pollution keeps rising with canopy.</p>
     <div class="dl"><button class="btn" id="dj">Download results (JSON)</button><button class="btn" id="dg">Download map layers (GeoJSON)</button></div></section>
 
-  <section class="always"><div class="kick">Built on AWS</div><h2>How Green Lungs runs on AWS</h2>
-    <p class="lead">Every search passes through AWS: the place is resolved, the site's datasets are read, the recommendation is computed and logged, all behind one public address.</p>
-    <div class="aws"><div class="bx"><b>You</b>A browser on any device</div><div class="ar">&rarr;</div>
-     <div class="bx m"><b>AWS App Runner</b>Runs the Green Lungs container, whose image is stored in Amazon ECR, and serves the site and API over HTTPS</div><div class="ar">&rarr;</div>
-     <div class="col"><div class="bx"><b>Amazon S3</b>Environmental, species and planting-space datasets</div><div class="bx"><b>Amazon Location Service</b>Turns a place name into coordinates</div><div class="bx"><b>Amazon CloudWatch</b>Logs every search and recommendation</div></div></div>
-    <div class="live" id="live"></div>
-    <div class="svc"><div><b>Amazon S3</b><span>The data lives in a bucket, not in the code. Adding a neighbourhood or a new year of records means uploading a file; the next start picks it up.</span></div>
-     <div><b>Amazon Location Service</b><span>Resolves whatever people type into coordinates, so any address in Delhi can be matched to its nearest study site.</span></div>
-     <div><b>AWS App Runner and Amazon ECR</b><span>The app is packaged as a container image and run as a managed service with HTTPS and automatic scaling, with no servers to look after.</span></div>
-     <div><b>Amazon CloudWatch and IAM</b><span>Logs show which areas people ask about. An IAM role gives the app access to S3 and Location, so no keys sit in the code.</span></div></div></section>
+  <section class="always">
+  <div class="kick">Built on AWS</div>
+  <h2>How Green Lungs runs on AWS</h2>
+
+  <p class="lead">
+    Green Lungs is deployed on AWS Elastic Beanstalk using Docker.
+    Users can search for a location or enter coordinates, and the
+    application matches the location to available environmental data
+    and generates tree recommendations.
+  </p>
+
+  <div class="aws">
+    <div class="bx">
+      <b>You</b>
+      A browser on any device
+    </div>
+
+    <div class="ar">&rarr;</div>
+
+    <div class="bx m">
+      <b>AWS Elastic Beanstalk</b>
+      Runs the Green Lungs application packaged in a Docker container.
+    </div>
+
+    <div class="ar">&rarr;</div>
+
+    <div class="col">
+      <div class="bx">
+        <b>Local datasets</b>
+        Environmental conditions, tree species and planting spaces
+      </div>
+
+      <div class="bx">
+        <b>OpenStreetMap Nominatim</b>
+        Resolves place names into geographic coordinates
+      </div>
+
+      <div class="bx">
+        <b>Green Lungs API</b>
+        Matches locations and generates tree recommendations
+      </div>
+    </div>
+  </div>
+
+  <div class="live" id="live"></div>
+
+  <div class="svc">
+    <div>
+      <b>Environmental and tree datasets</b>
+      <span>
+        The application currently reads environmental, species and
+        planting-space datasets from a local folder packaged with
+        the application.
+      </span>
+    </div>
+
+    <div>
+      <b>Location search</b>
+      <span>
+        Place-name geocoding uses OpenStreetMap Nominatim.
+        Users can also enter geographic coordinates directly.
+      </span>
+    </div>
+
+    <div>
+      <b>AWS Elastic Beanstalk and Docker</b>
+      <span>
+        Docker packages the application, and AWS Elastic Beanstalk
+        runs it in the cloud.
+      </span>
+    </div>
+
+    <div>
+      <b>Future improvements</b>
+      <span>
+        Amazon S3-based dataset storage, Amazon Location Service
+        and additional AWS monitoring integrations could be added
+        in future versions.
+      </span>
+    </div>
+  </div>
+
+  <p class="lead">
+    <b>Live application:</b>
+    <a href="http://greenlungs-env.eba-npiprwiw.ap-southeast-2.elasticbeanstalk.com/"
+       target="_blank" rel="noopener noreferrer">
+      Open Green Lungs
+    </a>
+    <br>
+    <b>API documentation:</b>
+    <a href="http://greenlungs-env.eba-npiprwiw.ap-southeast-2.elasticbeanstalk.com/docs"
+       target="_blank" rel="noopener noreferrer">
+      View API docs
+    </a>
+    <br>
+    <b>Health check:</b>
+    <a href="http://greenlungs-env.eba-npiprwiw.ap-southeast-2.elasticbeanstalk.com/api/health"
+       target="_blank" rel="noopener noreferrer">
+      Check application status
+    </a>
+  </p>
+</section>
   <footer>Green Lungs, built for the AWS Environment Bharat Builds Tour at DTU. Projections are modelled estimates built on synthetic growth, survival and cost parameters. Treat them as comparisons between species, not forecasts.</footer>
 </div>
 
