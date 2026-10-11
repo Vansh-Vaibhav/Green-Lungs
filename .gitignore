@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+aws_credentials*
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Leftovers from the earlier Streamlit version
+.streamlit/
+app.py
